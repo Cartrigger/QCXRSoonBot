@@ -1,5 +1,4 @@
 const fs = require('fs');
-const { ask } = require("./ai.js");
 const path = require('node:path');
 const { EmbedBuilder } = require('discord.js');
 const { Events } = require('discord.js')
