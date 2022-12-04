@@ -27,9 +27,11 @@ const commandsPath = path.join(__dirname, 'commands');
 const commandFiles = fs.readdirSync(commandsPath).filter(file => file.endsWith('.js'));
 
 client.on(Events.MessageCreate, async message => {
-  if (message.content.substring(0, 1) === "!") {
-    const prompt = message.content.substring(1); //remove the exclamation mark from the message
+  if (message.mentions.has(client.user)) {
+    const prompt = message.content; //remove the exclamation mark from the message
+    console.log(prompt)
     const answer = await ask(prompt); //prompt GPT-3
+    console.log(answer),
       client.channels.fetch(message.channelId).then(channel => channel.send(answer), message.channel.sendTyping()),
       message.channel.sendTyping();
 }});
