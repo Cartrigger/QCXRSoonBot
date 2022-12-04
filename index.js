@@ -30,9 +30,9 @@ client.on(Events.MessageCreate, async message => {
   if (message.content.substring(0, 1) === "!") {
     const prompt = message.content.substring(1); //remove the exclamation mark from the message
     const answer = await ask(prompt); //prompt GPT-3
-    client.channels.fetch(message.channelId).then(channel => channel.send(answer));
-  }
-});
+      client.channels.fetch(message.channelId).then(channel => channel.send(answer), message.channel.sendTyping()),
+      message.channel.sendTyping();
+}});
 
 
 for (const file of commandFiles) {
